@@ -1,1 +1,14 @@
-<p>buscar-livro works!</p>
+<div class="container">
+    <h1 class="py-4">Buscar Livro:</h1>
+    <form [formGroup]="formBusca">
+        <div>
+            <label for="nome" class="form-label">Nome: </label>
+            <input type="text" name="nome" id="nome" class="form-control" formControlName="nome">
+        </div>
+        <div>
+            <input class="btn btn-warning my-4" type="button" value="Buscar" [disabled]="formBusca.invalid"
+                (click)="buscar()">
+        </div>
+    </form>
+
+</div>

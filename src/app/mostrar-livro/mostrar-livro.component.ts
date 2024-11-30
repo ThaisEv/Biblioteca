@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LivroService } from '../model/livro.service';
 
 @Component({
   selector: 'app-mostrar-livro',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './mostrar-livro.component.css'
 })
 export class MostrarLivroComponent {
-
+  constructor (public ls: LivroService) {}
 }

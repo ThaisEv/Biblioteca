@@ -5,8 +5,8 @@ import { MostrarLivroComponent } from './mostrar-livro/mostrar-livro.component';
 
 
 const routes: Routes = [
-  {path: 'mostrar', component: BuscarLivroComponent}, 
-  {path: 'buscar', component: MostrarLivroComponent}
+  {path: 'buscar', component: BuscarLivroComponent}, 
+  {path: 'mostrar', component: MostrarLivroComponent}
 
 ];
 
