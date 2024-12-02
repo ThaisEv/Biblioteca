@@ -1,4 +1,11 @@
-<div class="container">
+<form class="d-flex" role="search" [formGroup]="formBusca">
+    <label for="nome" class="form-label"></label>
+    <input type="search" name="nome" id="nome" class="form-control me-2" aria-label="search" placeholder="Título do livro" formControlName="nome">
+    <input class="btn btn-outline-warning" type="button" value="Buscar" [disabled]="formBusca.invalid"
+                (click)="buscar()">
+  </form>
+
+<!-- <div class="container">
     <h1 class="py-4">Buscar Livro:</h1>
     <form [formGroup]="formBusca">
         <div>
@@ -6,9 +13,8 @@
             <input type="text" name="nome" id="nome" class="form-control" formControlName="nome">
         </div>
         <div>
-            <input class="btn btn-warning my-4" type="button" value="Buscar" [disabled]="formBusca.invalid"
-                (click)="buscar()">
+            
         </div>
     </form>
 
-</div>
+</div> -->

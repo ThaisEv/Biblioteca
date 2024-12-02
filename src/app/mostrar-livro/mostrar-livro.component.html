@@ -1,18 +1,17 @@
-<!-- <div class="div-card">
+<div class="div-card my-4">
     <div *ngFor="let item of ls.livros" class="card mb-3" style="max-width: 540px;">
         <div class="row g-0">
             <div class="col-md-4">
-                <img src="{{item.sea}}" class="img-fluid rounded-start" alt="..." style="width: 120px; height: 160px;">
+                <img [src]="item.volumeInfo.imageLinks?.smallThumbnail" class="img-fluid rounded-start" alt="item.volumeInfo.title" style="width: 120px; height: 160px;">
             </div>
             <div class="col-md-8">
                 <div class="card-body">
-                    <h5 class="card-title">{{item.nome}} <span class="badge text-bg-warning">{{item.siglaPartido}}</span></h5>
-                    <p class="card-text fs-6"><b>Enredo:</b> {{filme.Plot}}</p> 
-                    <p class="card-text"><small class="text-body-secondary"><b>Email:</b> {{item.email}}
-                            <br><b>Estado:</b> {{item.siglaUf}}</small></p>
+                    <h5 class="card-title">{{item.volumeInfo.title}} <span class="badge text-bg-warning"></span></h5>
+                    <p class="card-text"><small class="text-body-secondary"><b>Autor(es):</b> {{item.volumeInfo.authors || "Sem autor(a)"}}
+                            <br><b>Categoria(s):</b> {{item.volumeInfo.categories || 'Sem categoria'}}</small></p>
 
                 </div>
             </div>
         </div>
     </div>
-</div> -->
+</div>

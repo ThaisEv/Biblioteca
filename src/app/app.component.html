@@ -5,15 +5,16 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link" routerLink="/buscar" routerLinkActive="active">Buscar</a>
-        <a class="nav-link" routerLink="/mostrar" routerLinkActive="active">Mostrar</a>
+      <div class="navbar-nav me-auto mb-2 mb-lg-0">
+        <!-- <a class="nav-link" routerLink="/buscar" routerLinkActive="active">Buscar</a> -->
+        <!-- <a class="nav-link" routerLink="/mostrar" routerLinkActive="active">Mostrar</a> -->
         
       </div>
+      <app-buscar-livro></app-buscar-livro>
     </div>
   </div>
 </nav>
 
 <div class="container">
-  <router-outlet></router-outlet>
+  <app-mostrar-livro></app-mostrar-livro>
 </div>

@@ -1,5 +1,5 @@
 export class Livro {
-    volumeInfo = [{
+    volumeInfo = {
         title: '', 
         subtitle: '', 
         authors: [],
@@ -10,5 +10,5 @@ export class Livro {
         language: '',
         categories: [],
         pageCount: ''
-     }]
+     }
 }
