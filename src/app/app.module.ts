@@ -7,12 +7,14 @@ import { BuscarLivroComponent } from './buscar-livro/buscar-livro.component';
 import { MostrarLivroComponent } from './mostrar-livro/mostrar-livro.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideHttpClient } from '@angular/common/http';
+import { CadastroComponent } from './cadastro/cadastro.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BuscarLivroComponent,
-    MostrarLivroComponent
+    MostrarLivroComponent,
+    CadastroComponent
   ],
   imports: [
     BrowserModule,

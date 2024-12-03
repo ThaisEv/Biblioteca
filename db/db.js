@@ -21,7 +21,7 @@ app.listen(port, () => {
     })
 })
 
-app.get('/user_dados', (req, res) => {
+app.get('/dados-usuario', (req, res) => {
     const SQL = 'SELECT * from usuario';
 
     connection.query(SQL, (erro, prods, fields) =>{
@@ -29,6 +29,21 @@ app.get('/user_dados', (req, res) => {
             res.json({'erro na consulta do usuário': erro.sqlMessage});
         } else {
             res.json(prods);
+        }
+    })
+})
+
+app.post('/add-usuario', (req, res) => {
+    const nome = req.body.nome;
+    const email = req.body.email;
+    const senha = req.body.senha;
+    const SQL = 'INSERT INTO usuario (nome, email, senha) VALUES(?, ?, ?)';    
+
+    connection.query(SQL, [nome, email, senha], (erro, prods, fields) => {
+        if(erro) {
+            res.json({'erro no post do usuário': erro.sqlMessage});
+        } else {
+            res.send('Usuário cadastrado!');
         }
     })
 })
