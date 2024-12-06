@@ -9,6 +9,10 @@ export class Livro {
         imageLinks: {smallThumbnail: '', thumbnail: ''},
         language: '',
         categories: [],
-        pageCount: ''
+        pageCount: '',
      }
+     saleInfo = {
+        saleability: '',
+        listPrice: { amount: 0 }
+    }
 }

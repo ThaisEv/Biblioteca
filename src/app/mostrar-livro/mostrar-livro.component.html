@@ -2,14 +2,20 @@
     <div *ngFor="let item of ls.livros" class="card mb-3" style="max-width: 540px;">
         <div class="row g-0">
             <div class="col-md-4">
-                <img [src]="item.volumeInfo.imageLinks.smallThumbnail" class="img-fluid rounded-start" alt="item.volumeInfo.title" style="width: 120px; height: 160px;">
+                <img [src]="item.volumeInfo.imageLinks.smallThumbnail" class="img-fluid rounded-start"
+                    alt="item.volumeInfo.title" style="width: 120px; height: 160px;">
             </div>
             <div class="col-md-8">
                 <div class="card-body">
                     <h5 class="card-title">{{item.volumeInfo.title}} <span class="badge text-bg-warning"></span></h5>
-                    <p class="card-text"><small class="text-body-secondary"><b>Autor(es):</b> {{item.volumeInfo.authors || "Sem autor(a)"}}
-                            <br><b>Categoria(s):</b> {{item.volumeInfo.categories || 'Sem categoria'}}</small></p>
+                    <p class="card-text"><small class="text-body-secondary"><b>Autor(es):</b> {{item.volumeInfo.authors
+                            || "Sem autor(a)"}}
+                            <br><b>Categoria(s):</b> {{item.volumeInfo.categories || 'Sem categoria'}}</small>
 
+                        <br><small [ngStyle]="{color: 'var(--primary-color)'}" *ngIf="item.saleInfo.saleability == 'FOR_SALE'">
+                            <b>R$</b> {{+item.saleInfo.listPrice.amount.toFixed(2) || "Sem preço"}}</small>
+                            <small [ngStyle]="{color: 'var(--red-600)'}" *ngIf="item.saleInfo.saleability != 'FOR_SALE'"><b>NÃO ESTÁ A VENDA!</b></small>
+                    </p>
                 </div>
             </div>
         </div>
