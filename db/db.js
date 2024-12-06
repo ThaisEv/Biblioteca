@@ -10,6 +10,11 @@ const connection = mysql.createConnection({
     database: 'lupa'
 })
 
+const cors = require('cors');
+app.use(cors());
+
+app.use(express.json());
+
 app.listen(port, () => {
     console.log(`listening on port ${port}`);
     connection.connect(erro => {
@@ -40,10 +45,11 @@ app.post('/add-usuario', (req, res) => {
     const SQL = 'INSERT INTO usuario (nome, email, senha) VALUES(?, ?, ?)';    
 
     connection.query(SQL, [nome, email, senha], (erro, prods, fields) => {
-        if(erro) {
-            res.json({'erro no post do usuário': erro.sqlMessage});
+        if (erro) {
+            console.error('Erro ao executar consulta:', erro);
+            res.status(500).json({ error: erro.sqlMessage });
         } else {
-            res.send('Usuário cadastrado!');
+            res.status(201).json({ message: 'Usuário cadastrado com sucesso!' });
         }
-    })
+    });
 })
