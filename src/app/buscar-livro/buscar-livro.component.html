@@ -1,5 +1,9 @@
-<form class="d-flex align-items-center card flex flex-column md:flex-row gap-3" role="search" [formGroup]="formBusca">
-    <p-inputGroup>
+<form 
+    class="d-flex align-items-center card flex flex-column md:flex-row gap-3 form-cadastro" 
+    role="search" 
+    [formGroup]="formBusca">
+    
+    <p-inputGroup class="w-full sm:w-auto">
         <input 
             type="text" 
             pInputText 
@@ -7,14 +11,17 @@
             name="nome" 
             placeholder="Título do livro" 
             formControlName="nome" 
-            aria-label="Título do livro">
+            aria-label="Título do livro"
+            class="w-full sm:w-auto">
+        
         <button 
             pButton 
             icon="pi pi-search" 
             type="button" 
             [disabled]="formBusca.invalid" 
             (click)="buscar()"
-            routerLink="/mostrar">
+            routerLink="/mostrar"
+            class="p-button-outlined">
         </button>
     </p-inputGroup>
 </form>

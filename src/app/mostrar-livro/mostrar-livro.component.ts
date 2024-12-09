@@ -8,4 +8,8 @@ import { LivroService } from '../model/livro.service';
 })
 export class MostrarLivroComponent {
   constructor (public ls: LivroService) {}
+
+  selecionar(id: string) {
+    this.ls.selecionarLivro(id);
+  }
 }

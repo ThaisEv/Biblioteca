@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { BancoDeDadosService } from '../banco-de-dados.service';
+import { BancoDeDadosService } from '../model/banco-de-dados.service';
 
 
 @Component({
@@ -9,12 +9,11 @@ import { BancoDeDadosService } from '../banco-de-dados.service';
   styleUrl: './cadastro.component.css'
 })
 export class CadastroComponent {
-  value: string = ''
   form_cadastro: FormGroup;
 
   constructor(private bdService: BancoDeDadosService, private fb: FormBuilder) {
     this.form_cadastro = this.fb.group({
-      nome: ['', [Validators.required, Validators.maxLength(2)]],
+      nome: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email]],
       senha: ['', [Validators.required, Validators.maxLength(8), Validators.minLength(6)]]
     })

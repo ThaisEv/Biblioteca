@@ -1,0 +1,85 @@
+<div class="flex justify-content-center card p-4 m-4">
+
+
+    <p-stepper [linear]="true">
+        <p-stepperPanel header="Forma de pagamento">
+            <ng-template pTemplate="content" let-nextCallback="nextCallback" let-index="index">
+                <div class="div_conteudo flex flex-column h-12rem">
+                    <div class="conteudo">
+                        <p>Selecione a <b>forma de pagamento:</b></p>
+
+                        <form [formGroup]="formCompra">
+                            <p-listbox [options]="forma" formControlName="forma_pag" optionLabel="nome">
+                                <ng-template let-item pTemplate="item">
+                                    <i [class]="item.icon + ' mr-2'"></i> <!-- Ícone dinâmico -->
+                                    {{ item.nome }}
+                                </ng-template>
+                            </p-listbox>
+                        </form>
+                    </div>
+                </div>
+                <div class="flex pt-4 justify-content-end">
+                    <p-button [disabled]="formCompra.get('forma_pag')?.invalid" label="Próximo" icon="pi pi-arrow-right"
+                        iconPos="right" (onClick)="nextCallback.emit()" />
+                </div>
+            </ng-template>
+        </p-stepperPanel>
+        <p-stepperPanel header="Parcelamento">
+            <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback"
+                let-index="index">
+                <div class="div_conteudo flex flex-column">
+                    <div class="conteudo">
+                        <p>Selecione o <b>número de parcela(s):</b>
+                            <br><small [ngStyle]="{color: 'var(--red-500)'}">Juros fixo de 5% ao mês a partir da 2º parcela!</small>
+                        </p>
+                        <form [formGroup]="formCompra">
+
+                            <p-listbox [options]="parcela" formControlName="parcela_pag" optionLabel="nome">
+                            </p-listbox>
+                        </form>
+                    </div>
+                </div>
+                <div class="flex pt-4 justify-content-between gap-3">
+                    <p-button label="Voltar" icon="pi pi-arrow-left" (onClick)="prevCallback.emit()"
+                        severity="warning" />
+                    <p-button class="px-2" label="Próximo" icon="pi pi-arrow-right" iconPos="right"
+                        (onClick)="nextCallback.emit()" [disabled]="formCompra.get('parcela_pag')?.invalid"
+                        (click)="comprar(ls.compra.amount)" />
+                </div>
+            </ng-template>
+        </p-stepperPanel>
+        <p-stepperPanel header="Confirmação">
+            <ng-template pTemplate="content" let-prevCallback="prevCallback" let-index="index">
+                <div class="div_conteudo flex flex-column h-12rem">
+                    <div class="conteudo">
+                        <h5 class="py-4"><b [ngStyle]="{color: 'var(--indigo-800)'}">Finalizar compra</b></h5>
+                        <div class="d-flex">
+                            <p-image [src]="ls.compra?.thumbnail || 'sem_capa.png'" alt="Image" width="180" />
+                            <div class="p-3">
+                                <p><b>Livro:</b> {{ls.compra.title}}</p>
+                                <p><b>Forma de pagamento:</b> {{infoCompra.forma}}
+                                    <br><b>Parcelas:</b> {{infoCompra.parcelas}} parcelas
+                                    <br><small [ngStyle]="{color: 'var(--red-500)'}">Juros fixo de 5% ao mês a partir da 2º parcela!</small>
+                                </p>
+                                <div *ngFor="let i of infoCompra.valorParcelas">
+                                    <p><b [ngStyle]="{color: 'var(--green-600)'}">{{i.np}}° parcelas:</b> {{i.vp}}</p>
+                                </div>
+                                <p><b>Valor total: </b>R$ {{infoCompra.valorTotal}}</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="flex pt-4 justify-content-start">
+                    <p-button label="Voltar" icon="pi pi-arrow-left" (onClick)="prevCallback.emit()"
+                        severity="warning" />
+                    <p-button class="px-2" label="Finalizar compra" icon="pi pi-check" iconPos="right"
+                        severity="success"  routerLink="/"/>
+                        
+                        </div>
+
+            </ng-template>
+        </p-stepperPanel>
+    </p-stepper>
+
+</div>

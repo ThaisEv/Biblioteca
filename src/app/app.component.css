@@ -1,5 +1,24 @@
+
 .c_form {
     width: 100%;
     display: flex;
     justify-content: center;
 }
+
+.end-content {
+    display: flex;
+    align-items: center; 
+    gap: 8px;
+}
+
+.end-content app-buscar-livro {
+    flex: 1;
+}
+
+.p-menuitem-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+

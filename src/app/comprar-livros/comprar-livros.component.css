@@ -1,0 +1,12 @@
+.div_conteudo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.conteudo {
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

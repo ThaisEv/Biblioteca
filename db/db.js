@@ -38,6 +38,18 @@ app.get('/dados-usuario', (req, res) => {
     })
 })
 
+app.get('/dados-favoritos', (req, res) => {
+    const SQL = 'SELECT * from favoritos';
+
+    connection.query(SQL, (erro, prods, fields) =>{
+        if(erro) {
+            res.json({'erro na consulta do usuário': erro.sqlMessage});
+        } else {
+            res.json(prods);
+        }
+    })
+})
+
 app.post('/add-usuario', (req, res) => {
     const nome = req.body.nome;
     const email = req.body.email;
@@ -50,6 +62,21 @@ app.post('/add-usuario', (req, res) => {
             res.status(500).json({ error: erro.sqlMessage });
         } else {
             res.status(201).json({ message: 'Usuário cadastrado com sucesso!' });
+        }
+    });
+})
+
+app.post('/add-favoritos', (req, res) => {
+    const id_fav = req.body.id_fav;
+    const id_usuario = req.body.id_usuario;
+    const SQL = 'INSERT INTO favoritos (id_fav, id_usuario) VALUES(?, ?)';    
+
+    connection.query(SQL, [id_fav, id_usuario], (erro, prods, fields) => {
+        if (erro) {
+            console.error('Erro ao executar consulta:', erro);
+            res.status(500).json({ error: erro.sqlMessage });
+        } else {
+            res.status(201).json({ message: 'Livro cadastrado com sucesso nos favoritos!' });
         }
     });
 })
