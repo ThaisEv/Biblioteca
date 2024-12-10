@@ -1,0 +1,36 @@
+<body class="d-flex align-items-center py-4 bg-body-tertiary">
+
+    <main class="form-signin w-100 m-auto">
+        <form [formGroup]="form_login" (ngSubmit)="autenticar() " routerlink='/'>
+            <h1 class="h3 mb-3 fw-normal">Login</h1>
+
+            <div class="form-floating mt-4">
+                <p-floatLabel>
+                    <input type="email" class="form-control" id="email" name="email" formControlName="email" pInputText/>
+                    <label for="email">Email</label>
+                </p-floatLabel>
+                
+            </div>
+
+            <div class="form-floating mt-4 mb-3">
+                <p-floatLabel>
+                    <p-password type="password" id="senha" name="senha" formControlName="senha" [toggleMask]="true" />
+                    <label for="senha">Senha</label>
+                </p-floatLabel>
+                
+                
+            </div>
+
+            <button pButton pRipple label="Cadastrar" class="py-2" type="submit"
+                [disabled]="form_login.invalid"></button>
+                
+            <div *ngIf="form_login.get('senha')?.invalid && form_login.get('senha')?.touched" class="alert alert-danger mt-3" role="alert">
+                <i class="pi pi-exclamation-triangle"></i> Preencha a senha com no mínimo 6 e no máximo 8 caracteres!
+              </div>
+            <div *ngIf="form_login.get('email')?.invalid && form_login.get('email')?.touched" class="alert alert-danger mt-3" role="alert">
+                <i class="pi pi-exclamation-triangle"></i> Insira um formato de email válido!
+              </div>
+        </form>
+
+    </main>
+</body>

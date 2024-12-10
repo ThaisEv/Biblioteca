@@ -50,4 +50,14 @@ export class LivroComponent {
       }
     });
   }
+
+  deletar(id: string) {
+    this.bdService.deletarFavorito(id).subscribe(res => {
+        if (res) {
+           console.log('Usuário excluído com sucesso');
+        } else {
+           console.log('Erro ao excluir usuário');
+        }
+      })
+  }
 }

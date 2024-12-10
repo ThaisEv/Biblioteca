@@ -6,6 +6,7 @@ import { CadastroComponent } from './cadastro/cadastro.component';
 import { LivroComponent } from './livro/livro.component';
 import { MostrarFavoritosComponent } from './mostrar-favoritos/mostrar-favoritos.component';
 import { ComprarLivrosComponent } from './comprar-livros/comprar-livros.component';
+import { LoginComponent } from './login/login.component';
 
 
 const routes: Routes = [
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path: 'livro', component: LivroComponent},
   {path: 'favoritos', component: MostrarFavoritosComponent},
   {path: 'comprar', component: ComprarLivrosComponent},
-  {path: '', component: CadastroComponent}
+  {path: 'cadastro', component: CadastroComponent},
+  {path: 'login', component: LoginComponent}
 
 ];
 

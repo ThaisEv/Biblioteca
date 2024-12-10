@@ -14,6 +14,7 @@ import { CadastroComponent } from './cadastro/cadastro.component';
 import { LivroComponent } from './livro/livro.component';
 import { MostrarFavoritosComponent } from './mostrar-favoritos/mostrar-favoritos.component';
 import { ComprarLivrosComponent } from './comprar-livros/comprar-livros.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ComprarLivrosComponent } from './comprar-livros/comprar-livros.componen
     CadastroComponent,
     LivroComponent,
     MostrarFavoritosComponent,
-    ComprarLivrosComponent
+    ComprarLivrosComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

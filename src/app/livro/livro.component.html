@@ -17,6 +17,8 @@
             <div class="d-flex">
                 <p-button [text]="true" severity="danger" icon="pi pi-heart" class="px-2" pRipple label="Favoritar"
                             (click)="adicionarFavortito(ls.livro.id, bdService.usuario.id)"></p-button>
+                <p-button severity="danger" icon="pi pi-heart" class="px-2" pRipple label="Desfavoritar"
+                (click)="deletar(ls.livro.id)"></p-button>
 
                 <p-button *ngIf="ls.livro.saleInfo.saleability == 'FOR_SALE'" 
                           pRipple  severity="success" label="E-BOOK R$ {{ls.livro.saleInfo.listPrice.amount || '0.00'}}"

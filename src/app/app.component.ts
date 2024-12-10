@@ -1,6 +1,8 @@
 import { Component, OnInit  } from '@angular/core';
+import { Router } from '@angular/router';
 import { PrimeNGConfig } from 'primeng/api';
 import { MenuItem } from 'primeng/api/menuitem';
+import { BancoDeDadosService } from './model/banco-de-dados.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +11,7 @@ import { MenuItem } from 'primeng/api/menuitem';
 })
 export class AppComponent implements OnInit {
 
-    constructor(private primengConfig: PrimeNGConfig) {}
+    constructor(private primengConfig: PrimeNGConfig, public router: Router, public bdService: BancoDeDadosService) {}
 
     ngOnInit() {
         this.primengConfig.ripple = true;
