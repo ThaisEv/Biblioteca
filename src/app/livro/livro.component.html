@@ -1,0 +1,57 @@
+<div [ngStyle]="{color: 'var(--text-color)'}" class="card my-4 p-5">
+    <div class="container py-4 d-flex">
+        <p-image [src]="ls.livro.volumeInfo.imageLinks?.thumbnail || 'sem_capa.png'" alt="Image" width="180" />
+
+        <div class="px-4 py-2">
+            <h2>{{ls.livro.volumeInfo.title}}</h2>
+            <h4>{{ls.livro.volumeInfo.subtitle}}</h4>
+
+            <div>
+                <p-rating [(ngModel)]="ls.livro.volumeInfo.averageRating" [readonly]="true" [cancel]="false" />
+                ({{ls.livro.volumeInfo.ratingsCount || 0}})
+            </div>
+
+            <p><b [ngStyle]="{color: 'var(--indigo-800)'}">Autor(es): </b>{{ls.livro.volumeInfo.authors || "Desconhecido"}}<br>
+            <b [ngStyle]="{color: 'var(--indigo-800)'}">Categoria(s): </b>{{ls.livro.volumeInfo.categories || "Sem categoria"}}</p>
+            <br>
+            <div class="d-flex">
+                <p-button [text]="true" severity="danger" icon="pi pi-heart" class="px-2" pRipple label="Favoritar"
+                            (click)="adicionarFavortito(ls.livro.id, bdService.usuario.id)"></p-button>
+                <p-button severity="danger" icon="pi pi-heart" class="px-2" pRipple label="Desfavoritar"
+                (click)="deletar(ls.livro.id)"></p-button>
+
+                <p-button *ngIf="ls.livro.saleInfo.saleability == 'FOR_SALE'" 
+                          pRipple  severity="success" label="E-BOOK R$ {{ls.livro.saleInfo.listPrice.amount || '0.00'}}"
+                          (onClick)="showDialog()"
+                          ></p-button>
+                            <p-dialog header="Autenticação" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }">
+                                <span class="p-text-secondary block mb-5">Insira sua senha para continuar compra!</span>
+                                <p></p>
+                                <form [formGroup]="formValidarSenha">
+                                <div class="flex align-items-center gap-3 mb-3">
+                                    <label for="senha" class="font-semibold w-6rem">Senha: </label>
+                                    <input pInputText id="senha" formControlName="confirmarSenha" class="flex-auto" autocomplete="off" />
+                                    <div [ngStyle]="{color: 'var(--red-500)'}" *ngIf="!senhasIguais && formValidarSenha.get('confirmarSenha')?.dirty">
+                                        As senhas não coincidem.
+                                    </div>
+                                </div>
+                                <div class="flex justify-content-end gap-2">
+                                    <p-button label="Cancelar" severity="secondary" (onClick)="visible = false" />
+                                    <p-button label="Confirmar" (onClick)="visible = false" 
+                                    (click)="ls.comprar(ls.livro.id, ls.livro.volumeInfo.title, 
+                                                ls.livro.volumeInfo.imageLinks.thumbnail, ls.livro.saleInfo.listPrice.amount)"
+                                    routerLink="/comprar" [disabled]="!senhasIguais"/>
+                                </div></form>
+                            </p-dialog>
+            </div>
+            
+        </div>
+    </div>
+    <p-fieldset legend="Descrição">
+        <div class="m-0">
+        <p [innerHTML]="ls.livro.volumeInfo.description"></p></div>
+    </p-fieldset>
+    <div *ngFor="let i of bdService.favoritos">
+        <p>{{i.id_fav}}</p>
+    </div>
+</div>

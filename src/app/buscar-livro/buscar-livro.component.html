@@ -1,21 +1,27 @@
-<form class="d-flex" role="search" [formGroup]="formBusca">
-    <label for="nome" class="form-label"></label>
-    <input type="search" name="nome" id="nome" class="form-control me-2" aria-label="search" placeholder="Título do livro" formControlName="nome">
-    <a routerLink="/buscar">
-<input class="btn btn-outline-warning" type="button" value="Buscar" [disabled]="formBusca.invalid"
-                (click)="buscar()"></a>
-  </form>
-
-<!-- <div class="container">
-    <h1 class="py-4">Buscar Livro:</h1>
-    <form [formGroup]="formBusca">
-        <div>
-            <label for="nome" class="form-label">Nome: </label>
-            <input type="text" name="nome" id="nome" class="form-control" formControlName="nome">
-        </div>
-        <div>
-            
-        </div>
-    </form>
-
-</div> -->
+<form 
+    class="d-flex align-items-center card flex flex-column md:flex-row gap-3 form-cadastro" 
+    role="search" 
+    [formGroup]="formBusca">
+    
+    <p-inputGroup class="w-full sm:w-auto">
+        <input 
+            type="text" 
+            pInputText 
+            id="nome" 
+            name="nome" 
+            placeholder="Título do livro" 
+            formControlName="nome" 
+            aria-label="Título do livro"
+            class="w-full sm:w-auto">
+        
+        <button 
+            pButton 
+            icon="pi pi-search" 
+            type="button" 
+            [disabled]="formBusca.invalid" 
+            (click)="buscar()"
+            routerLink="/mostrar"
+            class="p-button-outlined">
+        </button>
+    </p-inputGroup>
+</form>

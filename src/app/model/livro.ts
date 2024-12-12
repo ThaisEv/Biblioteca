@@ -1,4 +1,5 @@
 export class Livro {
+    id = '';
     volumeInfo = {
         title: '', 
         subtitle: '', 
@@ -9,6 +10,12 @@ export class Livro {
         imageLinks: {smallThumbnail: '', thumbnail: ''},
         language: '',
         categories: [],
-        pageCount: ''
+        pageCount: '',
+        ratingsCount: 0,
+        averageRating: 0
      }
+     saleInfo = {
+        saleability: '',
+        listPrice: { amount: 0 }
+    }
 }

@@ -1,22 +1,48 @@
-<form id="formulario" class="formulario" method="POST" action="localhost:3000/add-usuario">
-    <div class="formulario__texto">
-        <h5>Cadastro</h5>
-    </div>
+<body class="d-flex align-items-center py-4 bg-body-tertiary">
 
-    <div class="formulario__itens read">
-        <label for="nome" class="formulario__itens__texto">Nome: </label>
-        <input id="nome" name="nome" type="text" class="formulario__itens__input" placeholder="(Sem Informações)">
-    </div>
-    <div class="formulario__itens read">
-        <label for="email" class="formulario__itens__texto">Email: </label>
-        <input id="email" name="email" type="text" class="formulario__itens__input" placeholder="(Sem informações)" >
-    </div>
-    <div class="formulario__itens read">
-        <label for="senha" class="formulario__itens__texto">Senha: </label>
-        <input id="senha" type="senha" class="formulario__itens__input" placeholder="(Sem informações)" >
-    </div>
+    <main class="form-signin w-100 m-auto">
+        <form [formGroup]="form_cadastro" (ngSubmit)="adicionarUsuario()">
+            <h1 class="h3 mb-3 fw-normal">Cadastro</h1>
 
-    <div class="formulario__botao">
-        <button class="btn btn-warning" type="submit">Cadastrar</button>
-    </div>
-</form>
+            <div class="form-floating my-4">
+                <p-floatLabel>
+                    <input type="text" class="form-control" id="nome" name="nome" formControlName="nome" pInputText/>
+                    <label for="nome">Nome</label>
+                </p-floatLabel>
+                
+            </div>
+
+            <div class="form-floating mt-4">
+                <p-floatLabel>
+                    <input type="email" class="form-control" id="email" name="email" formControlName="email" pInputText/>
+                    <label for="email">Email</label>
+                </p-floatLabel>
+                
+            </div>
+
+            <div class="form-floating mt-4 mb-3">
+                <p-floatLabel>
+                    <p-password type="password" id="senha" name="senha" formControlName="senha" [toggleMask]="true" />
+                    <label for="senha">Senha</label>
+                </p-floatLabel>
+                
+                
+            </div>
+
+            <button pButton pRipple label="Cadastrar" class="py-2" type="submit"
+                [disabled]="form_cadastro.invalid"></button>
+                
+            <div *ngIf="form_cadastro.get('senha')?.invalid && form_cadastro.get('senha')?.touched" class="alert alert-danger mt-3" role="alert">
+                <i class="pi pi-exclamation-triangle"></i> Preencha a senha com no mínimo 6 e no máximo 8 caracteres!
+              </div>
+            <div *ngIf="form_cadastro.get('email')?.invalid && form_cadastro.get('email')?.touched" class="alert alert-danger mt-3" role="alert">
+                <i class="pi pi-exclamation-triangle"></i> Email incorreto!
+              </div>
+          
+              <div *ngIf="form_cadastro.get('nome')?.invalid && form_cadastro.get('nome')?.touched" class="alert alert-danger mt-3" role="alert">
+                <i class="pi pi-exclamation-triangle"></i> Preencha seu nome com no mínimo 2 caracteres!
+              </div>
+        </form>
+
+    </main>
+</body>

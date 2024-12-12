@@ -1,20 +1,38 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav me-auto mb-2 mb-lg-0">
-        <!-- <a class="nav-link" routerLink="/buscar" routerLinkActive="active">Buscar</a> -->
-        <!-- <a class="nav-link" routerLink="/mostrar" routerLinkActive="active">Mostrar</a> -->
-        
-      </div>
-      <app-buscar-livro></app-buscar-livro>
-    </div>
-  </div>
-</nav>
 
-<div class="container">
-  <app-cadastro></app-cadastro>
+
+<p-menubar [model]="navbar" class="custom-menubar flex align-items-center p-jc-center">
+  <ng-template pTemplate="start">
+      <p-image class="px-2" src="logo_black.png" width="40"></p-image>
+  </ng-template>
+
+  <ng-template pTemplate="item" let-item let-root="root">
+    <a [ngStyle]="{color: 'var(--text-color)'}"
+      pRipple 
+      class="flex align-items-center p-menuitem-link mt-2"
+      [routerLink]="item.routerLink"
+    >
+        <span [class]="item.icon"></span>
+        <span class="mx-1 ml-2">{{ item.label }}</span>
+    </a>
+  </ng-template>
+
+  <ng-template pTemplate="end">
+      <div class="end-content flex align-items-center gap-2">
+          <app-buscar-livro></app-buscar-livro>
+          <p-avatar 
+              class="px-2"
+              icon="pi pi-user" 
+              styleClass="mr-2" 
+              [style]="{ 'background-color': '#1a2551', color: '#dee9fc' }" 
+              shape="circle">
+          </p-avatar>
+      </div>
+  </ng-template>
+</p-menubar>
+
+
+
+<div class="container c_forn">
+  <router-outlet></router-outlet>
 </div>
+

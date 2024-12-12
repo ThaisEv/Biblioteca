@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { BancoDeDadosService } from './banco-de-dados.service';
+import { BancoDeDadosService } from './model/banco-de-dados.service';
 
 describe('BancoDeDadosService', () => {
   let service: BancoDeDadosService;
