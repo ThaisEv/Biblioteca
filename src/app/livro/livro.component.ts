@@ -13,6 +13,7 @@ export class LivroComponent {
   visible: boolean = false;
   formValidarSenha: FormGroup;
 
+  favoritos: Favorito[] = [];
 
   senhasIguais: boolean = false;
 
@@ -53,11 +54,31 @@ export class LivroComponent {
 
   deletar(id: string) {
     this.bdService.deletarFavorito(id).subscribe(res => {
-        if (res) {
-           console.log('Usuário excluído com sucesso');
-        } else {
-           console.log('Erro ao excluir usuário');
-        }
+      if (res) {
+        console.log('Usuário excluído com sucesso');
+      } else {
+        console.log('Erro ao excluir usuário');
+      }
+    })
+  }
+
+  verificarFavorito(id: string): boolean {
+    let verificador = false;
+    this.bdService.livrosFavoritos().subscribe(
+      (res) => {
+        this.favoritos = res;
+        console.log(this.favoritos);
+
+        this.favoritos.forEach(item => {
+          if (item.id_usuario == this.bdService.usuario.id) {
+            if (item.id_fav === id) {
+              verificador = true;
+            }
+          }
+        });
       })
+      
+    console.log(verificador);
+    return verificador;
   }
 }

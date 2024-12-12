@@ -29,7 +29,6 @@ export class MostrarFavoritosComponent implements OnInit {
           }
         });
       }
-
     )
   }
 
