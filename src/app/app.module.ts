@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+
 //primeNG
 import { PrimeNgModule } from './primeng.module';
 
@@ -15,6 +16,7 @@ import { LivroComponent } from './livro/livro.component';
 import { MostrarFavoritosComponent } from './mostrar-favoritos/mostrar-favoritos.component';
 import { ComprarLivrosComponent } from './comprar-livros/comprar-livros.component';
 import { LoginComponent } from './login/login.component';
+import { PaginaInicialComponent } from './pagina-inicial/pagina-inicial.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { LoginComponent } from './login/login.component';
     LivroComponent,
     MostrarFavoritosComponent,
     ComprarLivrosComponent,
-    LoginComponent
+    LoginComponent,
+    PaginaInicialComponent
   ],
   imports: [
     BrowserModule,

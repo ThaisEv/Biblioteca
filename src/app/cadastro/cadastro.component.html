@@ -1,6 +1,7 @@
 <body class="d-flex align-items-center py-4 bg-body-tertiary">
 
     <main class="form-signin w-100 m-auto">
+        <p-image src="logo_black.png" alt="Image" width="70"/>
         <form [formGroup]="form_cadastro" (ngSubmit)="adicionarUsuario()">
             <h1 class="h3 mb-3 fw-normal">Cadastro</h1>
 
@@ -22,16 +23,35 @@
 
             <div class="form-floating mt-4 mb-3">
                 <p-floatLabel>
-                    <p-password type="password" id="senha" name="senha" formControlName="senha" [toggleMask]="true" />
+                    <p-password  [feedback]="false" type="password" id="senha" name="senha" formControlName="senha" [toggleMask]="true" />
                     <label for="senha">Senha</label>
                 </p-floatLabel>
                 
                 
             </div>
 
+            <div class="form-check mt-4 mb-3">
+                <input 
+                  type="checkbox" 
+                  class="form-check-input" 
+                  id="termos" 
+                  formControlName="termos"
+                />
+                <label class="form-check-label" for="termos">
+                  Aceito os termos de uso.
+                </label>
+              </div>
+
+           
+
             <button pButton pRipple label="Cadastrar" class="py-2" type="submit"
                 [disabled]="form_cadastro.invalid"></button>
                 
+                <div>
+                    <p class="py-2">
+                        <small>Já tem cadastro? <a routerLink="/login">Logar-se.</a></small></p>
+                </div>
+
             <div *ngIf="form_cadastro.get('senha')?.invalid && form_cadastro.get('senha')?.touched" class="alert alert-danger mt-3" role="alert">
                 <i class="pi pi-exclamation-triangle"></i> Preencha a senha com no mínimo 6 e no máximo 8 caracteres!
               </div>

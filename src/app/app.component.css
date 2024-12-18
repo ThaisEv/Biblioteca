@@ -22,3 +22,8 @@
     text-decoration: none;
 }
 
+.avatar_icon:hover {
+    cursor: pointer;
+}
+
+

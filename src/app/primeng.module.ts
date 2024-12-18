@@ -30,6 +30,8 @@ import { TagModule } from 'primeng/tag';
 import { StepperModule } from 'primeng/stepper';
 import { StepsModule } from 'primeng/steps';
 import { ListboxModule } from 'primeng/listbox';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { DividerModule } from 'primeng/divider';
 
 // Outras importações necessárias
 import { CommonModule } from '@angular/common';
@@ -99,8 +101,9 @@ import { FormsModule } from '@angular/forms';
     TagModule,
     StepperModule,
     StepsModule,
-    ListboxModule
-
+    ListboxModule,
+    InputTextareaModule,
+    DividerModule
   ],
 })
 export class PrimeNgModule {}

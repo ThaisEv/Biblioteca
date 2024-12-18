@@ -1,0 +1,27 @@
+.comentario_res {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+}
+
+.res {
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.res ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.res ul li {
+    padding: 20px;
+}
+
+textarea {
+    padding: 20px;
+}

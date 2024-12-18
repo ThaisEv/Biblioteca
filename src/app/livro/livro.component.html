@@ -15,9 +15,9 @@
             <b [ngStyle]="{color: 'var(--indigo-800)'}">Categoria(s): </b>{{ls.livro.volumeInfo.categories || "Sem categoria"}}</p>
             <br>
             <div class="d-flex">
-                <p-button *ngIf="!verificarFavorito(ls.livro.id)" [text]="true" severity="danger" icon="pi pi-heart" class="px-2" pRipple label="Favoritar"
-                            (click)="adicionarFavortito(ls.livro.id, bdService.usuario.id)"></p-button>
-                <p-button *ngIf="verificarFavorito(ls.livro.id)" severity="danger" icon="pi pi-heart" class="px-2" pRipple label="Desfavoritar"
+                <p-button *ngIf="(verificarFavorito(ls.livro.id)  | async) === false" [text]="true" severity="danger" icon="pi pi-heart" class="px-2" pRipple label="Favoritar"
+                            (click)="adicionarFavortito(ls.livro.id, bdService.usuario_logado.id_usuario)"></p-button>
+                <p-button *ngIf="(verificarFavorito(ls.livro.id)  | async) === true" severity="danger" icon="pi pi-heart" class="px-2" pRipple label="Desfavoritar"
                 (click)="deletar(ls.livro.id)"></p-button>
 
                 <p-button *ngIf="ls.livro.saleInfo.saleability == 'FOR_SALE'" 
@@ -51,7 +51,42 @@
         <div class="m-0">
         <p [innerHTML]="ls.livro.volumeInfo.description"></p></div>
     </p-fieldset>
-    <div *ngFor="let i of bdService.favoritos">
-        <p>{{i.id_fav}}</p>
+
+    <p-divider/>
+
+    <div class="comentario_res">
+        <h4>Nova resenha</h4>
+        <form [formGroup]="formResenha" (ngSubmit)="adicionarResenha(bdService.usuario_logado.id_usuario, ls.livro.id, bdService.usuario_logado.nome_login)" class="res">
+            
+            <p-rating formControlName="estrelas" />
+            <p-floatLabel>
+                <textarea id="over_label" rows="7" cols="80" pTextarea formControlName="resenha"></textarea>
+                <label for="over_label">Resenha</label>
+            </p-floatLabel>
+            <p-button type="submit" label="Enviar"></p-button>
+        </form>
+    </div>
+    <p-divider/>
+
+    <div class="comentario_res" >
+        <h4>Resenhas</h4>
+        <div *ngIf="resenhas.length > 0; else emptyResenhas" class="res" [ngModel]="buscarResenhas()">
+        <ul>
+          <li  *ngFor="let resenha of resenhas" class="card">
+            <div class="res_perfil">
+                <p-avatar label="{{resenha.nome_usuario.trim().charAt(0)}}" class="px-2 avatar_icon" styleClass="mr-2" shape="circle" />
+                <strong> {{ resenha.nome_usuario }}</strong>
+            </div>
+            <br>
+
+            <p-rating [ngModel]="resenha.estrelas" [readonly]="true"></p-rating>
+            <p>{{ resenha.resenha }}</p>
+          </li>
+        </ul>
+      </div>
+      
+      <ng-template #emptyResenhas>
+        <p>Não há resenhas cadastradas ainda.</p>
+      </ng-template>
     </div>
 </div>

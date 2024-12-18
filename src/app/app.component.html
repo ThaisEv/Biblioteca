@@ -1,8 +1,8 @@
 
 
-<p-menubar [model]="navbar" class="custom-menubar flex align-items-center p-jc-center">
-  <ng-template pTemplate="start">
-      <p-image class="px-2" src="logo_black.png" width="40"></p-image>
+<p-menubar *ngIf="bdService.usuario_logado?.id_usuario" [model]="navbar" class="custom-menubar flex align-items-center p-jc-center">
+  <ng-template  pTemplate="start">
+      <p-image routerLink="/"  class="px-2" src="logo_black.png" width="40"></p-image>
   </ng-template>
 
   <ng-template pTemplate="item" let-item let-root="root">
@@ -20,19 +20,32 @@
       <div class="end-content flex align-items-center gap-2">
           <app-buscar-livro></app-buscar-livro>
           <p-avatar 
-              class="px-2"
+              (click)="showDialog()"
+              class="px-2 avatar_icon"
               icon="pi pi-user" 
               styleClass="mr-2" 
               [style]="{ 'background-color': '#1a2551', color: '#dee9fc' }" 
               shape="circle">
           </p-avatar>
+          <!-- <p-avatar (click)="showDialog()" label="{{avatar_letra}}" class="px-2 avatar_icon" styleClass="mr-2" shape="circle" /> -->
       </div>
   </ng-template>
 </p-menubar>
 
 
 
+
+
 <div class="container c_forn">
   <router-outlet></router-outlet>
 </div>
+
+<p-dialog header="Perfil" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }">
+  <span class="p-text-secondary block mb-8">Informações do usuário</span>
+  <p><b>Nome:</b> {{bdService.usuario_logado?.nome_login || 'sem usuário'}} 
+  <br> <b>Email:</b> {{bdService.usuario_logado?.email_login || 'sem usuário'}} 
+  </p>
+  <button pButton pRipple label="Sair" severity="danger" [text]="true" (click)="deslogar(bdService.usuario_logado.id_usuario)"></button>
+
+</p-dialog>
 

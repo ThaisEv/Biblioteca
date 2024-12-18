@@ -23,7 +23,7 @@ export class MostrarFavoritosComponent implements OnInit {
         console.log(this.favoritos);
 
         this.favoritos.forEach(item => {
-          if (item.id_usuario == this.bdService.usuario.id) {
+          if (item.id_usuario == this.bdService.usuario_logado.id_usuario) {
             this.selecionarFavorito(item.id_fav);
             console.log("ID Favorito:", item.id_fav);
           }
